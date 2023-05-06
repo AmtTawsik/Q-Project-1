@@ -7,13 +7,18 @@ onMounted(() => {
 	initDropdowns();
 })
 
+
+const logout = () => {
+    app.currentUser.logOut();
+    navigateTo("/");
+};
+
 const name = ref(null);
 const bankName = ref(null);
 const invoiceName = ref(null);
 const agencyName = ref(null);
 const commissionPercentage = ref(null);
 const maxCommissionPerWeek = ref(null);
-const __v = ref(null);
 const VATRegistered = ref(null);
 const email = ref(null);
 const password = ref(null);
@@ -95,7 +100,7 @@ const clickk = () =>{
 			</div>
 		</nav>
 	</section>
-	<section class="md:w-6/12 w-11/12 mx-auto mt-5 border-2 p-5 rounded-md">
+	<section class="md:w-6/12 w-11/12 mx-auto my-5 border-2 p-5 rounded-md">
 		<form @submit.prevent="clickk">
 			<div class="grid gap-6 mb-6 md:grid-cols-2">
 				<div>
@@ -106,7 +111,7 @@ const clickk = () =>{
 						placeholder="Abdullah" required>
 				</div>
 				<div>
-					<label for="bankName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last
+					<label for="bankName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
 						Name in bank account</label>
 					<input v-model="bankName" type="text" id="bankName"
 						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -139,12 +144,6 @@ const clickk = () =>{
 					<input v-model="maxCommissionPerWeek" type="number" id="maxCommissionPerWeek"
 						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 						placeholder="57" required>
-				</div>
-				<div>
-					<label for="__v" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">__V</label>
-					<input v-model="__v" type="number" id="__v"
-						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-						placeholder="0" required>
 				</div>
 				<div>
 					<label for="VATRegistered" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Is VAT registered?</label>

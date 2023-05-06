@@ -5,6 +5,13 @@ import { initDropdowns } from 'flowbite'
 onMounted(() => {
 	initDropdowns();
 })
+
+const { app } = useMyRealmApp()
+
+const logout = () => {
+    app.currentUser.logOut();
+    navigateTo("/");
+};
 </script>
 
 <template>
