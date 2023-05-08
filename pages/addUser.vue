@@ -108,42 +108,46 @@ const clickk = () =>{
 						Name</label>
 					<input v-model="name" type="text" id="name"
 						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-						placeholder="Abdullah" required>
+						placeholder="Name" required>
 				</div>
 				<div>
 					<label for="bankName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
 						Name in bank account</label>
 					<input v-model="bankName" type="text" id="bankName"
 						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-						placeholder="Abdullah Al Mubin" required>
+						placeholder="Name in bank account" required>
 				</div>
 				<div>
 					<label for="invoiceName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name in
 						invoice</label>
 					<input v-model="invoiceName" type="text" id="invoiceName"
 						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-						placeholder="Mubin" required>
+						placeholder="Name in invoice" required>
 				</div>
 				<div>
-					<label for="agencyName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Agency name
-					</label>
-					<input v-model="agencyName" type="name" id="agencyName"
-						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-						placeholder="Qualyval" required>
+					<label for="agencyName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Agency name</label>
+					<select id="agencyName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+					<option value="tfs healthcare limited">TFS Healthcare Limited</option>
+					<option value="sanctuary personnel limited">Santuary Personnel Limited</option>
+					<option value="athona ltd">Athona Ltd</option>
+					<option value="venture partnership ltd">Venture Partnership Ltd</option>
+					<option value="id medical group">ID Medical Group Limited</option>
+					<option value="drc locums">DRC Locums</option>
+					</select>
 				</div>
 				<div>
 					<label for="commissionPercentage"
 						class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Commission percentage</label>
 					<input v-model="commissionPercentage" type="number" id="commissionPercentage"
 						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-						placeholder="0.7" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required>
+						placeholder="5" required>
 				</div>
 				<div>
 					<label for="maxCommissionPerWeek"
 						class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Max Commission Per Week</label>
 					<input v-model="maxCommissionPerWeek" type="number" id="maxCommissionPerWeek"
 						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-						placeholder="57" required>
+						placeholder="40" required>
 				</div>
 				<div>
 					<label for="VATRegistered" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Is VAT registered?</label>
@@ -175,22 +179,13 @@ const clickk = () =>{
 					address</label>
 				<input v-model="email" type="email" id="email"
 					class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-					placeholder="john.doe@company.com" required>
+					placeholder="email@example.com" required>
 			</div>
 			<div class="mb-6">
 				<label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
 				<input v-model="password" type="password" id="password"
 					class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 					placeholder="•••••••••" required>
-			</div>
-			<div class="flex items-start mb-6">
-				<div class="flex items-center h-5">
-					<input id="remember" type="checkbox" value=""
-						class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-						required>
-				</div>
-				<label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a
-						href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
 			</div>
 			<button type="submit"
 				class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
