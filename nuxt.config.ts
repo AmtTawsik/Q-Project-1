@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-	css: ["@/assets/css/resets.css", "@/assets/css/input.css"],
+	css: ["@/assets/css/input.css"],
 
 	runtimeConfig: {
 		public: {
