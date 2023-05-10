@@ -27,7 +27,7 @@ const logout = () => {
     <Header></Header>
     <section class="w-11/12 mx-auto mt-5">
         <div class="mb-10">
-            <h2 class="md:text-4xl text-2xl font-bold mb-5">List of Users:</h2>
+            <h2 class="md:text-4xl text-2xl font-bold mb-5">List of Agencies:</h2>
             <div class="overflow-x-auto">
                 <form>
                     <table v-if="contacts.length > 0" class="w-full text-sm text-left text-gray-500 ">
