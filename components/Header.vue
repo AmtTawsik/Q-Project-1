@@ -53,16 +53,16 @@ const logout = () => {
                 <ul
                     class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
                     <li>
-                        <NuxtLink :to="app.currentUser?.profile?.email === 'admin@gmail.com' ? '/admin' : '/users'" href="#"
+                        <NuxtLink :to="app.currentUser?.profile?.email === 'admin@gmail.com' ? '/admin' : '/users'"
                             class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
                             aria-current="page">Home</NuxtLink>
                     </li>
                     <li>
-                        <NuxtLink to="userList" href="#"
+                        <NuxtLink to="userList"
                             class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">User List</NuxtLink>
                     </li>
                     <li>
-                        <NuxtLink to="agencies" href="#"
+                        <NuxtLink to="agencies"
                             class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">Agencies</NuxtLink>
                     </li>
                 </ul>

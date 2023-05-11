@@ -6,19 +6,17 @@ onMounted(() => {
     initDropdowns();
 })
 
-const contacts = ref([
-    { _id: 1, name: 'Abdullah Al Mubin', agency: 'TFS Healthcare Limited', joiningDate: '12 June 2022' },
-    { _id: 2, name: 'Pritom Sarkar', agency: 'Santuary Personnel Limited', joiningDate: '07 January 2023' },
-    { _id: 3, name: 'Ibrahim Nur Rahul', agency: 'Athona Ltd', joiningDate: '17 August 2020' },
-    { _id: 4, name: 'Fahim Hosain', agency: 'Venture Partnership Ltd', joiningDate: '29 July 2021' },
-    { _id: 5, name: 'Pranto Nondi', agency: 'ID Medical Group Limited', joiningDate: '20 May 2019' },
-    { _id: 6, name: 'Asif Hosain Abrar', agency: 'TFS Healthcare Limited', joiningDate: '12 June 2022' },
-    { _id: 7, name: 'Pranjol Sorkar', agency: 'Santuary Personnel Limited', joiningDate: '07 January 2023' },
-    { _id: 8, name: 'John Orange', agency: 'Athona Ltd', joiningDate: '17 August 2020' },
-    { _id: 10, name: 'Rubaied Jaman', agency: 'ID Medical Group Limited', joiningDate: '20 May 2019' },
-])
+const users = ref([])
 
 const { app } = useMyRealmApp()
+
+const mongo = app.currentUser?.mongoClient("mongodb-atlas");
+const collection = mongo?.db("invoiceProcessor").collection("users");
+
+collection?.find()
+.then(data => {
+    users.value = data
+})
 
 const logout = () => {
     app.currentUser.logOut();
@@ -33,7 +31,7 @@ const logout = () => {
             <h2 class="md:text-4xl text-2xl font-bold mb-5">List of Users:</h2>
             <div class="overflow-x-auto">
                 <form>
-                    <table v-if="contacts.length > 0" class="w-full text-sm text-left text-gray-500 ">
+                    <table v-if="users.length > 0" class="w-full text-sm text-left text-gray-500 ">
                         <thead class="text-xs text-gray-700 bg-gray-50">
                             <tr>
                                 <th scope="col" class="px-4 py-3">Name</th>
@@ -43,16 +41,16 @@ const logout = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <template v-for="contact in contacts" :key="contact._id">
-                                <tr class="bg-white border-b">
+                            <template v-for="user in users" :key="user._id">
+                                <tr v-if="user.email !== 'admin@gmail.com'" class="bg-white border-b">
                                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">
-                                        {{ contact.name }}
+                                        {{ user.name }}
                                     </th>
-                                    <td class="px-4 py-3">{{ contact.agency }}</td>
-                                    <td class="px-4 py-3">{{ contact.joiningDate }}</td>
+                                    <td class="px-4 py-3">{{ user.agencyName }}</td>
+                                    <td class="px-4 py-3">{{ user.joiningDate }}</td>
                                     <td class="text-center">
                                         <div class="flex items-center ml-3.5">
-                                            <button class="py-3 text-blue-600" type="button">
+                                            <NuxtLink :to="`/editUser/${user._id}`" class="py-3 text-blue-600" type="button">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                     fill="currentColor" class="w-6 h-6">
                                                     <path
@@ -60,7 +58,7 @@ const logout = () => {
                                                     <path
                                                         d="M5.25 5.25a3 3 0 00-3 3v10.5a3 3 0 003 3h10.5a3 3 0 003-3V13.5a.75.75 0 00-1.5 0v5.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5V8.25a1.5 1.5 0 011.5-1.5h5.25a.75.75 0 000-1.5H5.25z" />
                                                 </svg>
-                                            </button>
+                                            </NuxtLink>
                                             <button class="py-3 text-red-600" type="button">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                     fill="currentColor" class="w-6 h-6">
