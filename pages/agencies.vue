@@ -1,26 +1,17 @@
 <script setup>
-import { onMounted } from 'vue'
-import { initDropdowns } from 'flowbite'
-
-onMounted(() => {
-    initDropdowns();
-})
-
-const contacts = ref([
-    { _id: 1, agency: 'TFS Healthcare Limited', location: 'Dhaka, Bangladesh' },
-    { _id: 2, agency: 'Santuary Personnel Limited', location: 'London, UK' },
-    { _id: 3, agency: 'Athona Ltd', location: 'Canberra, Australia' },
-    { _id: 4, agency: 'Venture Partnership Ltd', location: 'Paris, France' },
-    { _id: 5, agency: 'ID Medical Group Limited', location: 'Tokyo, Japan' },
-    { _id: 6, agency: 'DRC Locums', location: 'Doha, Qatar' },
-])
+const allAgency = ref([])
 
 const { app } = useMyRealmApp()
 
-const logout = () => {
-    app.currentUser.logOut();
-    navigateTo("/");
-};
+const mongo = app.currentUser?.mongoClient("mongodb-atlas");
+const collectionAgency = mongo?.db("invoiceProcessor").collection("agencies");
+
+collectionAgency?.find()
+.then(data => {
+    allAgency.value = data
+    console.log('datais',data)
+})
+.catch(err=>console.log(err))
 </script>
 
 <template>
@@ -30,7 +21,7 @@ const logout = () => {
             <h2 class="md:text-4xl text-2xl font-bold mb-5">List of Agencies:</h2>
             <div class="overflow-x-auto">
                 <form>
-                    <table v-if="contacts.length > 0" class="w-full text-sm text-left text-gray-500 ">
+                    <table v-if="allAgency.length > 0" class="w-full text-sm text-left text-gray-500 ">
                         <thead class="text-xs text-gray-700 bg-gray-50">
                             <tr>
                                 <th scope="col" class="px-4 py-3">Name</th>
@@ -39,12 +30,12 @@ const logout = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <template v-for="contact in contacts" :key="contact._id">
-                                <tr class="bg-white border-b">
+                            <template v-for="user in allAgency" :key="user._id">
+                                <tr v-if="user.email !== 'admin@gmail.com'" class="bg-white border-b">
                                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">
-                                        {{ contact.agency }}
+                                        {{ user.agencyName }}
                                     </th>
-                                    <td class="px-4 py-3">{{ contact.location }}</td>
+                                    <td class="px-4 py-3">{{ user.address }}</td>
                                     <td class="text-center">
                                         <div class="flex items-center ml-3.5">
                                             <button class="py-3 text-blue-600" type="button">

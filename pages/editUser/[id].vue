@@ -12,6 +12,7 @@ collectionUpdate?.find({ _id: ObjectId(id) })
     .then((d) => {
         data = d[0];
         console.log('datttttttttta', data)
+        console.log(data._id)
     })
     .catch((err) => {
         console.log(err);
@@ -25,8 +26,8 @@ const updateData = (event) => {
     const bankAccountNumber = event.target.bankAccountNumber.value;
     const invoiceName = event.target.invoiceName.value;
     const agencyName = event.target.agencyName.value;
-    const commissionPercentage = event.target.commissionPercentage.value;
-    const maxCommissionPerWeek = event.target.maxCommissionPerWeek.value;
+    const commissionPercentage = (+event.target.commissionPercentage.value);
+    const maxCommissionPerWeek = (+event.target.maxCommissionPerWeek.value);
     const vat = event.target.vat.value;
     if (vat === 'yes') {
         cValue = true
@@ -46,8 +47,9 @@ const updateData = (event) => {
         VATRegistered: cValue
     }
 
-    collectionUpdate
-        .updateOne({email:data.email}, {
+    console.log(updatedData)
+    
+    collectionUpdate.updateOne({email: ObjectId(data._id)}, {
             $set: updatedData
         })
         .then((data) => {
@@ -69,7 +71,7 @@ const updateData = (event) => {
                 <div>
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Name</label>
-                    <input type="text" id="name" name="name" :value="data.name"
+                    <input type="text" id="name" name="name" :defaultValue="data.name"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Name" required>
                 </div>
