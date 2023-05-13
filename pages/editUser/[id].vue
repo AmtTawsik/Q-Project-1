@@ -47,9 +47,9 @@ const updateData = (event) => {
         VATRegistered: cValue
     }
 
-    console.log(updatedData)
+    console.log(data)
     
-    collectionUpdate.updateOne({email: ObjectId(data._id)}, {
+    collectionUpdate.updateOne({_id: data._id}, {
             $set: updatedData
         })
         .then((data) => {
